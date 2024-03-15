@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.naming.Binding;
 import java.util.List;
 
 @Controller
@@ -79,7 +78,8 @@ public class UserController {
     @GetMapping("/search")
     public String searchUser(@RequestParam("query") String query, Model model) {
         List<User> searchResults = userService.searchUser(query);
-        model.addAttribute("listUsers", searchResults);
-        return "index";
+        model.addAttribute("query", query);
+        model.addAttribute("searchResults", searchResults);
+        return "search-results";
     }
 }
